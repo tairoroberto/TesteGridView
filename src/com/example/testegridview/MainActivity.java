@@ -4,6 +4,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -11,6 +15,29 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		//Array com as imagens
+		int[] lista = new int[]{R.drawable.android1,R.drawable.android2,R.drawable.android3,
+								R.drawable.android1,R.drawable.android2,R.drawable.android3,
+								R.drawable.android1,R.drawable.android2,R.drawable.android3,
+								R.drawable.android1,R.drawable.android2,R.drawable.android3,
+								R.drawable.android1,R.drawable.android2,R.drawable.android3};
+						
+					
+				
+		GridView gridView =(GridView)findViewById(R.id.gridView1);
+		gridView.setAdapter(new GridApapter(this, lista));	
+		
+		gridView.setOnItemClickListener(new GridView.OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+				//Imprime o elemento que foi clicado
+				Toast.makeText(getApplicationContext(), "Imagem :"+ (position+1), Toast.LENGTH_SHORT).show();;
+				
+			}
+			
+		});
+		
 	}
 
 	@Override
